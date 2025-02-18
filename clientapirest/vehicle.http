@@ -1,1 +1,21 @@
 GET http://localhost:3001/api/v1/vehicle
+
+###
+
+GET http://localhost:3001/api/v1/vehicle/1
+
+###
+
+POST http://localhost:3001/api/v1/vehicle
+
+###
+
+PATCH http://localhost:3001/api/v1/vehicle/50
+
+###
+
+PUT http://localhost:3001/api/v1/vehicle/75
+
+###
+
+DELETE http://localhost:3001/api/v1/vehicle/100
