@@ -1,4 +1,4 @@
-GET http://localhost:3001/api/v1/vehicle
+GET http://localhost:3001/api/v1/vehicle?brand=honda&seats=4&uppercase=false
 
 ###
 

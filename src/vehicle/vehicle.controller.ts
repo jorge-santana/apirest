@@ -6,12 +6,22 @@ import {
   Patch,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
   @Get()
-  findAll() {
+  findAll(
+    @Query('seats') seats: string,
+    @Query('uppercase') uppercase: string,
+    @Query('brand') brand: string,
+    @Query('doors') doors: string,
+  ) {
+    console.log('SEATS: ', seats);
+    console.log('UPPERCASE: ', uppercase);
+    console.log('BRAND: ', brand);
+    console.log('DOORS: ', doors);
     // TODO: Retornar todos os registros de vículos
     return [{ brand: 'Toyota' }, { brand: 'Ford' }];
   }
