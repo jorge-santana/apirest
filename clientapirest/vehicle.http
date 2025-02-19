@@ -2,7 +2,11 @@ GET http://localhost:3001/api/v1/vehicle
 
 ###
 
-GET http://localhost:3001/api/v1/vehicle/1
+GET http://localhost:3001/api/v1/vehicle/122
+
+###
+
+GET http://localhost:3001/api/v1/vehicle/jeep/4/seats/7
 
 ###
 

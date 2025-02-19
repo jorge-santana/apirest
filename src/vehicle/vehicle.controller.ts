@@ -1,4 +1,12 @@
-import { Controller, Delete, Get, Patch, Post, Put } from '@nestjs/common';
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  Put,
+} from '@nestjs/common';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -8,8 +16,24 @@ export class VehicleController {
     return [{ brand: 'Toyota' }, { brand: 'Ford' }];
   }
 
+  // /api/v1/vehicle/1
   @Get(':id')
-  findOne() {
+  findOne(@Param('id') id: string) {
+    console.log('ID: ', id);
+    // TODO: Recuperar um veículo por id
+    return { message: 'Retorna um veículo por id' };
+  }
+
+  // /api/v1/vehicle/toyota/4/seats/2
+  @Get(':brand/:doors/seats/:seats')
+  find(
+    @Param('brand') brand: string,
+    @Param('doors') doors: string,
+    @Param('seats') seats: string,
+  ) {
+    console.log('BRAND: ', brand);
+    console.log('DOORS: ', doors);
+    console.log('SEATS: ', seats);
     // TODO: Recuperar um veículo por id
     return { message: 'Retorna um veículo por id' };
   }
@@ -21,19 +45,22 @@ export class VehicleController {
   }
 
   @Patch(':id')
-  update() {
+  update(@Param('id') id: string) {
+    console.log(id);
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }
 
   @Put(':id')
-  replace() {
+  replace(@Param('id') id: string) {
+    console.log(id);
     // TODO: Atualizar todos os dados de um veículo (substituir)
     return { message: 'Atualiza todos os dados de um veículo' };
   }
 
   @Delete(':id')
-  delete() {
+  delete(@Param('id') id: string) {
+    console.log(id);
     // TODO: Remover um veículo
     return { message: 'Remove um veículo' };
   }
