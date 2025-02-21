@@ -3,42 +3,30 @@ import {
   Controller,
   Delete,
   Get,
+  Headers,
   Param,
   Patch,
   Post,
   Put,
   Query,
 } from '@nestjs/common';
-
-interface Vehicle {
-  brand: string;
-  model: string;
-  color: string;
-  year: number;
-  seats: number;
-  doors: number;
-}
+import { SaveVehicleDto } from './dto/save-vehicle.dto';
+import { SaveVehicleHeadersDto } from './dto/save-vehicle-headers.dto';
+import { FindVehicleDto } from './dto/find-vehicle.dto';
+import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
   @Get()
-  findAll(
-    @Query('seats') seats: string,
-    @Query('uppercase') uppercase: string,
-    @Query('brand') brand: string,
-    @Query('doors') doors: string,
-  ) {
-    console.log('SEATS: ', seats);
-    console.log('UPPERCASE: ', uppercase);
-    console.log('BRAND: ', brand);
-    console.log('DOORS: ', doors);
+  findAll(@Query() data: FindVehicleDto) {
+    console.log('Dados via Query String: ', data);
     // TODO: Retornar todos os registros de vículos
     return [{ brand: 'Toyota' }, { brand: 'Ford' }];
   }
 
   // /api/v1/vehicle/1
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: FindByIdVehicleDto) {
     console.log('ID: ', id);
     // TODO: Recuperar um veículo por id
     return { message: 'Retorna um veículo por id' };
@@ -59,10 +47,12 @@ export class VehicleController {
   }
 
   @Post()
-  save(@Body() body: Vehicle) {
+  save(
+    @Body() body: SaveVehicleDto,
+    @Headers() headers: SaveVehicleHeadersDto,
+  ) {
     // TODO: Tipo do parâmetro para DTO
-    console.log(body);
-    console.log(body?.model);
+    console.log(headers);
     // TODO: Registrar um veículo
     return { message: 'Registrar veículo' };
   }
