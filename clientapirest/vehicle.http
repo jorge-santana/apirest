@@ -11,6 +11,16 @@ GET http://localhost:3001/api/v1/vehicle/jeep/4/seats/7
 ###
 
 POST http://localhost:3001/api/v1/vehicle
+Content-Type: application/json
+
+{
+    "brand": "Toyota",
+    "model": "Corola",
+    "color": "Prata",
+    "year": 2022,
+    "seats": 4,
+    "doors": 4
+}
 
 ###
 

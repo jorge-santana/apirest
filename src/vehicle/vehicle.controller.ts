@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -8,6 +9,15 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
+
+interface Vehicle {
+  brand: string;
+  model: string;
+  color: string;
+  year: number;
+  seats: number;
+  doors: number;
+}
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -49,7 +59,10 @@ export class VehicleController {
   }
 
   @Post()
-  save() {
+  save(@Body() body: Vehicle) {
+    // TODO: Tipo do parâmetro para DTO
+    console.log(body);
+    console.log(body?.model);
     // TODO: Registrar um veículo
     return { message: 'Registrar veículo' };
   }
