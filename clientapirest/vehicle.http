@@ -24,6 +24,13 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:3001/api/v1/vehicle
+Content-Type: application/x-www-form-urlencoded
+
+brand=Volkswagen&model=Tiguan&color=Branco&year=2023&seats=5&doors=4
+
+###
+
 PATCH http://localhost:3001/api/v1/vehicle/50
 
 ###

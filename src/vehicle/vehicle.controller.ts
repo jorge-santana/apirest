@@ -49,10 +49,10 @@ export class VehicleController {
   @Post()
   save(
     @Body() body: SaveVehicleDto,
-    @Headers() headers: SaveVehicleHeadersDto,
+    //@Headers() headers: SaveVehicleHeadersDto,
   ) {
     // TODO: Tipo do parâmetro para DTO
-    console.log(headers);
+    console.log(body);
     // TODO: Registrar um veículo
     return { message: 'Registrar veículo' };
   }
