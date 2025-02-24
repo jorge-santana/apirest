@@ -31,6 +31,42 @@ brand=Volkswagen&model=Tiguan&color=Branco&year=2023&seats=5&doors=4
 
 ###
 
+POST http://localhost:3001/api/v1/vehicle
+Content-Type: multipart/form-data; boundary=--WebKitFormBoundary2Q3W
+
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="brand"
+
+Volkswagen
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="model"
+
+Tiguan
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="color"
+
+Branco
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="year"
+
+2023
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="seats"
+
+5
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="doors"
+
+4
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="cover"; filename="2023-volkswagen-tiguan.png"
+Content-Type: image/png
+
+< C:/Users/jorge/Downloads/2023-volkswagen-tiguan.png
+----WebKitFormBoundary2Q3W
+
+###
+
 PATCH http://localhost:3001/api/v1/vehicle/50
 
 ###
