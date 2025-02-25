@@ -9,11 +9,14 @@ import {
   Post,
   Put,
   Query,
+  UploadedFile,
+  UseInterceptors,
 } from '@nestjs/common';
 import { SaveVehicleDto } from './dto/save-vehicle.dto';
 import { SaveVehicleHeadersDto } from './dto/save-vehicle-headers.dto';
 import { FindVehicleDto } from './dto/find-vehicle.dto';
 import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -47,12 +50,14 @@ export class VehicleController {
   }
 
   @Post()
+  @UseInterceptors(FileInterceptor('cover'))
   save(
     @Body() body: SaveVehicleDto,
+    @UploadedFile() cover: Express.Multer.File,
     @Headers() headers: SaveVehicleHeadersDto,
   ) {
     // TODO: Tipo do parâmetro para DTO
-    console.log(headers, body);
+    console.log(headers, body, cover);
     // TODO: Registrar um veículo
     return { message: 'Registrar veículo' };
   }
