@@ -17,14 +17,14 @@ import { SaveVehicleHeadersDto } from './dto/save-vehicle-headers.dto';
 import { FindVehicleDto } from './dto/find-vehicle.dto';
 import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { VehicleService } from './vehicle.service';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
+  constructor(private vehicleService: VehicleService) {}
   @Get()
   findAll(@Query() data: FindVehicleDto) {
-    console.log('Dados via Query String: ', data);
-    // TODO: Retornar todos os registros de vículos
-    return [{ brand: 'Toyota' }, { brand: 'Ford' }];
+    return this.vehicleService.findAll(data);
   }
 
   // /api/v1/vehicle/1
