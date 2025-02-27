@@ -4,11 +4,13 @@ import {
   Delete,
   Get,
   Headers,
+  HttpCode,
   Param,
   Patch,
   Post,
   Put,
   Query,
+  Res,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -18,6 +20,7 @@ import { FindVehicleDto } from './dto/find-vehicle.dto';
 import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { VehicleService } from './vehicle.service';
+import { Response } from 'express';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -70,13 +73,17 @@ export class VehicleController {
   }
 
   @Put(':id')
-  replace(@Param('id') id: string) {
+  replace(@Param('id') id: string, @Res() res: Response) {
     console.log(id);
     // TODO: Atualizar todos os dados de um veículo (substituir)
-    return { message: 'Atualiza todos os dados de um veículo' };
+    //return { message: 'Atualiza todos os dados de um veículo' };
+    return res
+      .status(202) //Requisição aceita, porém o processamento será feito mais tarde, de forma assíncrona
+      .json({ message: 'Atualiza todos os dados de um veículo' });
   }
 
   @Delete(':id')
+  @HttpCode(204) // Requisição bem-sucedida, mas sem conteúdo
   delete(@Param('id') id: string) {
     console.log(id);
     // TODO: Remover um veículo
