@@ -5,6 +5,7 @@ import {
   Get,
   Headers,
   HttpCode,
+  HttpStatus,
   Param,
   Patch,
   Post,
@@ -78,12 +79,12 @@ export class VehicleController {
     // TODO: Atualizar todos os dados de um veículo (substituir)
     //return { message: 'Atualiza todos os dados de um veículo' };
     return res
-      .status(202) //Requisição aceita, porém o processamento será feito mais tarde, de forma assíncrona
+      .status(HttpStatus.ACCEPTED) //Requisição aceita, porém o processamento será feito mais tarde, de forma assíncrona
       .json({ message: 'Atualiza todos os dados de um veículo' });
   }
 
   @Delete(':id')
-  @HttpCode(204) // Requisição bem-sucedida, mas sem conteúdo
+  @HttpCode(HttpStatus.NO_CONTENT) // Requisição bem-sucedida, mas sem conteúdo
   delete(@Param('id') id: string) {
     console.log(id);
     // TODO: Remover um veículo
