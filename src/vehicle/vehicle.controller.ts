@@ -7,6 +7,9 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseArrayPipe,
+  ParseBoolPipe,
+  ParseFloatPipe,
   ParseIntPipe,
   Patch,
   Post,
@@ -76,9 +79,22 @@ export class VehicleController {
     @Body('year', ParseIntPipe) year: number,
     @Body('seats', ParseIntPipe) seats: number,
     @Body('doors', ParseIntPipe) doors: number,
+    @Body('isEletric', ParseBoolPipe) isEletric: boolean,
+    @Body('engine', ParseFloatPipe) engine: number,
+    @Body('features', ParseArrayPipe) features: Array<string>,
   ) {
     console.log(id);
-    console.log(brand, model, color, year, seats, doors);
+    console.log(
+      brand,
+      model,
+      color,
+      year,
+      seats,
+      doors,
+      isEletric,
+      engine,
+      features,
+    );
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }

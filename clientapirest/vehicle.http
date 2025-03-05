@@ -76,7 +76,10 @@ Content-Type: application/json
     "color": "Branco",
     "year": 2023,
     "seats": 5,
-    "doors": 4
+    "doors": 4,
+    "isEletric": false,
+    "engine": 2.0,
+    "features": ["Ar Condicionado", "Direção Elétrica"]
 }
 
 ###
