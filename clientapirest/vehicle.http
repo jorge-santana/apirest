@@ -74,10 +74,8 @@ Content-Type: application/json
     "brand": "Jeep",
     "model": "Compass",
     "color": "Branco",
-    "year": 2023,
-    "seats": 5,
-    "doors": 4,
     "isEletric": false,
+    "year": 2023,
     "engine": 2.0,
     "features": ["Ar Condicionado", "Direção Elétrica"]
 }
