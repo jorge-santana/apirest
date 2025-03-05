@@ -7,6 +7,7 @@ import {
   HttpCode,
   HttpStatus,
   Param,
+  ParseIntPipe,
   Patch,
   Post,
   Put,
@@ -66,15 +67,24 @@ export class VehicleController {
     return { message: 'Registrar veículo' };
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string) {
+  @Patch()
+  update(
+    @Query('id', ParseIntPipe) id: number,
+    @Body('brand') brand: string,
+    @Body('model') model: string,
+    @Body('color') color: string,
+    @Body('year', ParseIntPipe) year: number,
+    @Body('seats', ParseIntPipe) seats: number,
+    @Body('doors', ParseIntPipe) doors: number,
+  ) {
     console.log(id);
+    console.log(brand, model, color, year, seats, doors);
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }
 
   @Put(':id')
-  replace(@Param('id') id: string, @Res() res: Response) {
+  replace(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
     console.log(id);
     // TODO: Atualizar todos os dados de um veículo (substituir)
     //return { message: 'Atualiza todos os dados de um veículo' };

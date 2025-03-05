@@ -67,11 +67,21 @@ Content-Type: image/png
 
 ###
 
-PATCH http://localhost:3001/api/v1/vehicle/50
+PATCH http://localhost:3001/api/v1/vehicle?id=50
+Content-Type: application/json
+
+{
+    "brand": "Jeep",
+    "model": "Compass",
+    "color": "Branco",
+    "year": 2023,
+    "seats": 5,
+    "doors": 4
+}
 
 ###
 
-PUT http://localhost:3001/api/v1/vehicle/75
+PUT http://localhost:3001/api/v1/vehicle/A7A5
 
 ###
 
