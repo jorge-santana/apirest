@@ -77,7 +77,8 @@ Content-Type: application/json
     "isEletric": false,
     "year": 2023,
     "engine": 2.0,
-    "features": ["Ar Condicionado", "Direção Elétrica"]
+    "features": ["Ar Condicionado", "Direção Elétrica"],
+    "purchaseValue": "115.000,00"
 }
 
 ###

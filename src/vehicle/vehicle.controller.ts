@@ -27,6 +27,7 @@ import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { VehicleService } from './vehicle.service';
 import { Response } from 'express';
+import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -83,19 +84,9 @@ export class VehicleController {
     @Body('isEletric', ParseBoolPipe) isEletric: boolean,
     @Body('engine', ParseFloatPipe) engine: number,
     @Body('features', ParseArrayPipe) features: Array<string>,
+    @Body('purchaseValue', CurrencyPipe) purchaseValue: string,
   ) {
-    console.log(id);
-    console.log(
-      brand,
-      model,
-      color,
-      year,
-      seats,
-      doors,
-      isEletric,
-      engine,
-      features,
-    );
+    console.log('Dentro do Controller: ', purchaseValue);
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }
