@@ -84,7 +84,8 @@ export class VehicleController {
     @Body('isEletric', ParseBoolPipe) isEletric: boolean,
     @Body('engine', ParseFloatPipe) engine: number,
     @Body('features', ParseArrayPipe) features: Array<string>,
-    @Body('purchaseValue', CurrencyPipe) purchaseValue: string,
+    @Body('purchaseValue', new CurrencyPipe('en-US', 'USD'))
+    purchaseValue: string,
   ) {
     console.log('Dentro do Controller: ', purchaseValue);
     // TODO: Atualizar um veículo (parcial)

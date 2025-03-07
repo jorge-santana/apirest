@@ -7,6 +7,11 @@ import {
 
 @Injectable()
 export class CurrencyPipe implements PipeTransform {
+  constructor(
+    private readonly locale: string = 'pt-BR',
+    private readonly currency: string = 'BRL',
+  ) {}
+
   transform(value: any) {
     console.log('Dentro do Pipe: ', value);
 
@@ -39,9 +44,9 @@ export class CurrencyPipe implements PipeTransform {
 
   private format(value: number): string {
     // local = pt-BR; currency = BRL
-    return Intl.NumberFormat('en-US', {
+    return Intl.NumberFormat(this.locale, {
       style: 'currency',
-      currency: 'USD',
+      currency: this.currency,
     }).format(value);
   }
 }
