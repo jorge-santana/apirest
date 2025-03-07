@@ -19,6 +19,7 @@ import {
   Res,
   UploadedFile,
   UseInterceptors,
+  UsePipes,
 } from '@nestjs/common';
 import { SaveVehicleDto } from './dto/save-vehicle.dto';
 import { SaveVehicleHeadersDto } from './dto/save-vehicle-headers.dto';
@@ -28,6 +29,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { VehicleService } from './vehicle.service';
 import { Response } from 'express';
 import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
+import { UppercasePipe } from 'src/pipes/uppercase/uppercase.pipe';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -73,6 +75,7 @@ export class VehicleController {
   }
 
   @Patch()
+  @UsePipes(UppercasePipe)
   update(
     @Query('id', ParseIntPipe) id: number,
     @Body('brand') brand: string,
@@ -87,7 +90,19 @@ export class VehicleController {
     @Body('purchaseValue', new CurrencyPipe('en-US', 'USD'))
     purchaseValue: string,
   ) {
-    console.log('Dentro do Controller: ', purchaseValue);
+    console.log('Dentro do Controller:');
+    console.log(
+      brand,
+      model,
+      color,
+      year,
+      seats,
+      doors,
+      isEletric,
+      engine,
+      features,
+      purchaseValue,
+    );
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }

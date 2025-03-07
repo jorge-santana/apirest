@@ -13,8 +13,6 @@ export class CurrencyPipe implements PipeTransform {
   ) {}
 
   transform(value: any) {
-    console.log('Dentro do Pipe: ', value);
-
     if (typeof value === 'string') {
       // TODO: Converter para number e aplicar máscara monetária
       const numericValue = value.replace('.', '').replace(',', '.');
