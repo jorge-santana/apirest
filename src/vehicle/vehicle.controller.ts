@@ -61,12 +61,12 @@ export class VehicleController {
   @Post()
   @UseInterceptors(FileInterceptor('cover'))
   save(
-    @Body() body: SaveVehicleDto,
-    @UploadedFile() cover: Express.Multer.File,
-    @Headers() headers: SaveVehicleHeadersDto,
+    @Body(new ValidationPipe({ transform: true })) body: SaveVehicleDto,
+    // @UploadedFile() cover: Express.Multer.File,
+    // @Headers() headers: SaveVehicleHeadersDto,
   ) {
     // TODO: Tipo do parâmetro para DTO
-    console.log(headers, body, cover);
+    console.log(body);
     // TODO: Registrar um veículo
     return { message: 'Registrar veículo' };
   }
