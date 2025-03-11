@@ -1,16 +1,12 @@
 import {
   Body,
   Controller,
-  DefaultValuePipe,
   Delete,
   Get,
   Headers,
   HttpCode,
   HttpStatus,
   Param,
-  ParseArrayPipe,
-  ParseBoolPipe,
-  ParseFloatPipe,
   ParseIntPipe,
   Patch,
   Post,
@@ -20,6 +16,7 @@ import {
   UploadedFile,
   UseInterceptors,
   UsePipes,
+  ValidationPipe,
 } from '@nestjs/common';
 import { SaveVehicleDto } from './dto/save-vehicle.dto';
 import { SaveVehicleHeadersDto } from './dto/save-vehicle-headers.dto';
@@ -28,8 +25,8 @@ import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { VehicleService } from './vehicle.service';
 import { Response } from 'express';
-import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 import { UppercasePipe } from 'src/pipes/uppercase/uppercase.pipe';
+import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -78,31 +75,10 @@ export class VehicleController {
   @UsePipes(UppercasePipe)
   update(
     @Query('id', ParseIntPipe) id: number,
-    @Body('brand') brand: string,
-    @Body('model') model: string,
-    @Body('color') color: string,
-    @Body('year', new DefaultValuePipe(2025), ParseIntPipe) year: number,
-    @Body('seats', new DefaultValuePipe(5), ParseIntPipe) seats: number,
-    @Body('doors', new DefaultValuePipe(4), ParseIntPipe) doors: number,
-    @Body('isEletric', ParseBoolPipe) isEletric: boolean,
-    @Body('engine', ParseFloatPipe) engine: number,
-    @Body('features', ParseArrayPipe) features: Array<string>,
-    @Body('purchaseValue', new CurrencyPipe('en-US', 'USD'))
-    purchaseValue: string,
+    @Body(new ValidationPipe()) body: UpdateVehicleDto,
   ) {
     console.log('Dentro do Controller:');
-    console.log(
-      brand,
-      model,
-      color,
-      year,
-      seats,
-      doors,
-      isEletric,
-      engine,
-      features,
-      purchaseValue,
-    );
+    console.log(body);
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }
