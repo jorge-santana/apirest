@@ -62,7 +62,14 @@ export class VehicleController {
   @Post()
   @UseInterceptors(FileInterceptor('cover'))
   save(
-    @Body(new ValidationPipe({ transform: true })) body: SaveVehicleDto,
+    @Body(
+      new ValidationPipe({
+        transform: true,
+        whitelist: true,
+        forbidNonWhitelisted: true,
+      }),
+    )
+    body: SaveVehicleDto,
     @Body('purchaseValue', new CurrencyPipe()) purchaseValue: string,
     // @UploadedFile() cover: Express.Multer.File,
     // @Headers() headers: SaveVehicleHeadersDto,
