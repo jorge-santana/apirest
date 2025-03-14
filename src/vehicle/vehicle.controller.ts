@@ -62,14 +62,7 @@ export class VehicleController {
   @Post()
   @UseInterceptors(FileInterceptor('cover'))
   save(
-    @Body(
-      new ValidationPipe({
-        transform: true,
-        whitelist: true,
-        forbidNonWhitelisted: true,
-      }),
-    )
-    body: SaveVehicleDto,
+    @Body() body: SaveVehicleDto,
     @Body('purchaseValue', new CurrencyPipe()) purchaseValue: string,
     // @UploadedFile() cover: Express.Multer.File,
     // @Headers() headers: SaveVehicleHeadersDto,
@@ -84,7 +77,7 @@ export class VehicleController {
   @UsePipes(UppercasePipe)
   update(
     @Query('id', ParseIntPipe) id: number,
-    @Body(new ValidationPipe()) body: UpdateVehicleDto,
+    @Body() body: UpdateVehicleDto,
   ) {
     console.log('Dentro do Controller:');
     console.log(body);

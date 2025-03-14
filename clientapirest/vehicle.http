@@ -51,13 +51,13 @@ Content-Disposition: form-data; name="year"
 
 2023
 ----WebKitFormBoundary2Q3W
-Content-Disposition: form-data; name="seats"
-
-5
-----WebKitFormBoundary2Q3W
 Content-Disposition: form-data; name="doors"
 
 4
+----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="engine"
+
+1.8
 ----WebKitFormBoundary2Q3W
 Content-Disposition: form-data; name="purchaseValue"
 
@@ -75,7 +75,6 @@ PATCH http://localhost:3001/api/v1/vehicle?id=50
 Content-Type: application/json
 
 {
-    "brand": "Jeep",
     "model": "Compass",
     "color": "Branco",
     "seats": 5,
@@ -84,7 +83,8 @@ Content-Type: application/json
     "year": 2023,
     "engine": 2.0,
     "features": ["Ar Condicionado", "Direção Elétrica"],
-    "purchaseValue": "115.000,00"
+    "purchaseValue": "115.000,00",
+    "test": "test"
 }
 
 ###
