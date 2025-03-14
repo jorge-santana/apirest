@@ -59,6 +59,10 @@ Content-Disposition: form-data; name="doors"
 
 4
 ----WebKitFormBoundary2Q3W
+Content-Disposition: form-data; name="purchaseValue"
+
+115.000,00
+----WebKitFormBoundary2Q3W
 Content-Disposition: form-data; name="cover"; filename="2023-volkswagen-tiguan.png"
 Content-Type: image/png
 

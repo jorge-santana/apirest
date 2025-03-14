@@ -27,6 +27,7 @@ import { VehicleService } from './vehicle.service';
 import { Response } from 'express';
 import { UppercasePipe } from 'src/pipes/uppercase/uppercase.pipe';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
+import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -62,11 +63,12 @@ export class VehicleController {
   @UseInterceptors(FileInterceptor('cover'))
   save(
     @Body(new ValidationPipe({ transform: true })) body: SaveVehicleDto,
+    @Body('purchaseValue', new CurrencyPipe()) purchaseValue: string,
     // @UploadedFile() cover: Express.Multer.File,
     // @Headers() headers: SaveVehicleHeadersDto,
   ) {
     // TODO: Tipo do parâmetro para DTO
-    console.log(body);
+    console.log({ ...body, purchaseValue });
     // TODO: Registrar um veículo
     return { message: 'Registrar veículo' };
   }

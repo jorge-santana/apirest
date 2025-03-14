@@ -28,4 +28,7 @@ export class SaveVehicleDto {
   @Transform(({ value }) => Number(value))
   @IsInt()
   doors: number;
+
+  @IsNotEmpty()
+  purchaseValue: string;
 }
