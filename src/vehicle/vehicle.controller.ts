@@ -3,7 +3,6 @@ import {
   Controller,
   Delete,
   Get,
-  Headers,
   HttpCode,
   HttpStatus,
   Param,
@@ -16,10 +15,8 @@ import {
   UploadedFile,
   UseInterceptors,
   UsePipes,
-  ValidationPipe,
 } from '@nestjs/common';
 import { SaveVehicleDto } from './dto/save-vehicle.dto';
-import { SaveVehicleHeadersDto } from './dto/save-vehicle-headers.dto';
 import { FindVehicleDto } from './dto/find-vehicle.dto';
 import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
@@ -65,7 +62,8 @@ export class VehicleController {
   save(
     @Body() body: SaveVehicleDto,
     @Body('purchaseValue', new CurrencyPipe()) purchaseValue: string,
-    @UploadedFile(FileValidationPipe) cover: Express.Multer.File,
+    @UploadedFile(new FileValidationPipe(['image/png'], 3 * 1024 * 1024))
+    cover: Express.Multer.File,
     // @Headers() headers: SaveVehicleHeadersDto,
   ) {
     // TODO: Tipo do parâmetro para DTO
