@@ -1,4 +1,5 @@
 GET http://localhost:3001/api/v1/vehicle?brand=honda&seats=4&uppercase=false
+Authorization: Bearer 4rga654ga6e54ga6e4gr6a54egra78
 
 ###
 
@@ -32,6 +33,7 @@ brand=Volkswagen&model=Tiguan&color=Branco&year=2023&seats=5&doors=4
 ###
 
 POST http://localhost:3001/api/v1/vehicle
+Authorization: Bearer 4rga654ga6e54ga6e4gr6a54egra78
 Content-Type: multipart/form-data; boundary=--WebKitFormBoundary2Q3W
 
 ----WebKitFormBoundary2Q3W
