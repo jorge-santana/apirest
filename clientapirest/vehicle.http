@@ -12,27 +12,6 @@ GET http://localhost:3001/api/v1/vehicle/jeep/4/seats/7
 ###
 
 POST http://localhost:3001/api/v1/vehicle
-Content-Type: application/json
-
-{
-    "brand": "Toyota",
-    "model": "Corola",
-    "color": "Prata",
-    "year": 2022,
-    "seats": 4,
-    "doors": 4
-}
-
-###
-
-POST http://localhost:3001/api/v1/vehicle
-Content-Type: application/x-www-form-urlencoded
-
-brand=Volkswagen&model=Tiguan&color=Branco&year=2023&seats=5&doors=4
-
-###
-
-POST http://localhost:3001/api/v1/vehicle
 Authorization: Bearer 4rga654ga6e54ga6e4gr6a54egra78
 Content-Type: multipart/form-data; boundary=--WebKitFormBoundary2Q3W
 
@@ -77,6 +56,7 @@ PATCH http://localhost:3001/api/v1/vehicle?id=50
 Content-Type: application/json
 
 {
+    "brand": "Jeep",
     "model": "Compass",
     "color": "Branco",
     "seats": 5,
@@ -85,13 +65,12 @@ Content-Type: application/json
     "year": 2023,
     "engine": 2.0,
     "features": ["Ar Condicionado", "Direção Elétrica"],
-    "purchaseValue": "115.000,00",
-    "test": "test"
+    "purchaseValue": "115.000,00"
 }
 
 ###
 
-PUT http://localhost:3001/api/v1/vehicle/A7A5
+PUT http://localhost:3001/api/v1/vehicle/10
 
 ###
 
