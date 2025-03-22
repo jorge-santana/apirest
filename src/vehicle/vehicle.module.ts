@@ -16,13 +16,22 @@ import { AuthorizationMiddleware } from 'src/middlewares/authorization/authoriza
 })
 export class VehicleModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(AuthorizationMiddleware).forRoutes(
-      { path: 'api/v1/vehicle', method: RequestMethod.ALL },
-      { path: 'api/v1/vehicle/:id', method: RequestMethod.ALL },
-      {
-        path: 'api/v1/vehicle/:brand/:doors/seats/:seats',
-        method: RequestMethod.GET,
-      },
-    );
+    consumer
+      .apply(AuthorizationMiddleware)
+      .exclude(
+        { path: 'api/v1/vehicle', method: RequestMethod.GET },
+        { path: 'api/v1/vehicle/:id', method: RequestMethod.PUT },
+      )
+      .forRoutes(VehicleController);
+    /*
+      .forRoutes(
+        { path: 'api/v1/vehicle', method: RequestMethod.ALL },
+        { path: 'api/v1/vehicle/:id', method: RequestMethod.ALL },
+        {
+          path: 'api/v1/vehicle/:brand/:doors/seats/:seats',
+          method: RequestMethod.GET,
+        },
+      );
+    */
   }
 }
