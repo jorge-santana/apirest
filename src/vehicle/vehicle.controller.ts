@@ -26,6 +26,7 @@ import { UppercasePipe } from 'src/pipes/uppercase/uppercase.pipe';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 import { FileValidationPipe } from 'src/pipes/file-validation/file-validation.pipe';
+import { LogginInterceptor } from 'src/interceptors/loggin/loggin.interceptor';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -73,13 +74,14 @@ export class VehicleController {
   }
 
   @Patch()
+  @UseInterceptors(LogginInterceptor)
   @UsePipes(UppercasePipe)
   update(
     @Query('id', ParseIntPipe) id: number,
     @Body() body: UpdateVehicleDto,
   ) {
-    console.log('Dentro do Controller:');
-    console.log(body);
+    console.log('Dentro do Controller');
+    // console.log(body);
     // TODO: Atualizar um veículo (parcial)
     return { message: 'Atualizar parte de um veículo' };
   }
