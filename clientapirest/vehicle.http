@@ -53,6 +53,7 @@ Content-Type: image/png
 ###
 
 PATCH http://localhost:3001/api/v1/vehicle?id=50
+Authorization: Bearer 4rga654ga6e54ga6e4gr6a54egra78
 Content-Type: application/json
 
 {
