@@ -26,7 +26,6 @@ import { UppercasePipe } from 'src/pipes/uppercase/uppercase.pipe';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 import { FileValidationPipe } from 'src/pipes/file-validation/file-validation.pipe';
-import { LoggingInterceptor } from 'src/interceptors/logging/logging.interceptor';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -74,7 +73,6 @@ export class VehicleController {
   }
 
   @Patch()
-  @UseInterceptors(LoggingInterceptor)
   @UsePipes(UppercasePipe)
   async update(
     @Query('id', ParseIntPipe) id: number,
