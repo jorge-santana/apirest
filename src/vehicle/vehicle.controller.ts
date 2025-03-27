@@ -32,6 +32,7 @@ export class VehicleController {
   constructor(private vehicleService: VehicleService) {}
   @Get()
   findAll(@Query() data: FindVehicleDto) {
+    console.log('Passamos pelo manipulador de rota');
     return this.vehicleService.findAll(data);
   }
 
