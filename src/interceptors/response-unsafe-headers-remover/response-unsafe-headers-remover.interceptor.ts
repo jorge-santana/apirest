@@ -5,17 +5,19 @@ import {
   NestInterceptor,
 } from '@nestjs/common';
 import { Observable, tap } from 'rxjs';
+import { Response } from 'express';
 
 @Injectable()
-export class LoggingInterceptor implements NestInterceptor {
+export class ResponseUnsafeHeadersRemoverInterceptor
+  implements NestInterceptor
+{
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    const now = Date.now();
+    const httpContext = context.switchToHttp();
 
     return next.handle().pipe(
       tap(() => {
-        console.log(
-          `Tempo de execução do manipulador de rota: ${Date.now() - now}ms`,
-        );
+        const res: Response = httpContext.getResponse();
+        res.removeHeader('X-Powered-By');
       }),
     );
   }
