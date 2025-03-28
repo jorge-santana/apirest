@@ -21,9 +21,13 @@ export class LoggingInterceptor implements NestInterceptor {
       .handle()
       .pipe(timeout(5000))
       .pipe(
-        map((data: Array<{ brand: string }>) => {
+        map((data: Vehicle[]) => {
           console.log('Dados recebidos do manipulador de rota: ', data);
-          return data[0];
+          const filteredData = data.map((item: Vehicle) => {
+            delete item.vin;
+            return item;
+          });
+          return filteredData;
         }),
       )
       .pipe(
