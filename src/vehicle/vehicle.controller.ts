@@ -32,7 +32,7 @@ import { ResponseDataFilterInterceptor } from './interceptors/response-data-filt
 export class VehicleController {
   constructor(private vehicleService: VehicleService) {}
   @Get()
-  @UseInterceptors(ResponseDataFilterInterceptor)
+  @UseInterceptors(new ResponseDataFilterInterceptor(['vin']))
   findAll(@Query() data: FindVehicleDto) {
     console.log('Passamos pelo manipulador de rota');
     return this.vehicleService.findAll(data);
