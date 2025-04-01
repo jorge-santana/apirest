@@ -28,13 +28,11 @@ import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 import { FileValidationPipe } from 'src/pipes/file-validation/file-validation.pipe';
 import { ResponseDataFilterInterceptor } from './interceptors/response-data-filter/response-data-filter.interceptor';
-import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
   constructor(private vehicleService: VehicleService) {}
   @Get()
-  @UseGuards(AuthGuard)
   @UseInterceptors(new ResponseDataFilterInterceptor(['vin']))
   findAll(@Query() data: FindVehicleDto) {
     console.log('Passamos pelo manipulador de rota');
