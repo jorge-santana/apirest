@@ -28,11 +28,15 @@ import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
 import { FileValidationPipe } from 'src/pipes/file-validation/file-validation.pipe';
 import { ResponseDataFilterInterceptor } from './interceptors/response-data-filter/response-data-filter.interceptor';
+import { Roles } from 'src/decorators/roles/roles.decorator';
+import { AuthGuard } from 'src/guards/auth/auth.guard';
 
 @Controller('api/v1/vehicle')
+@UseGuards(AuthGuard)
 export class VehicleController {
   constructor(private vehicleService: VehicleService) {}
   @Get()
+  @Roles('guest')
   @UseInterceptors(new ResponseDataFilterInterceptor(['vin']))
   findAll(@Query() data: FindVehicleDto) {
     console.log('Passamos pelo manipulador de rota');
@@ -62,6 +66,7 @@ export class VehicleController {
   }
 
   @Post()
+  @Roles('admin')
   @UseInterceptors(FileInterceptor('cover'))
   save(
     @Body() body: SaveVehicleDto,
