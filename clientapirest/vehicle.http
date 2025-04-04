@@ -75,4 +75,6 @@ PUT http://localhost:3001/api/v1/vehicle/10
 
 ###
 
-DELETE http://localhost:3001/api/v1/vehicle/100
+DELETE http://localhost:3001/api/v1/vehicle/111
+Authorization: Bearer 4rga654ga6e54ga6e4gr6a54egra78
+

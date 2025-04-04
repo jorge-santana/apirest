@@ -14,6 +14,10 @@ export class AuthGuard implements CanActivate {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
     console.log('Metadado do contexto de execução: ', roles);
     console.log('Passamos pelo Guard');
+
+    if (typeof roles === 'undefined') {
+      return false;
+    }
     if (roles.includes(UserRole.PUBLIC)) {
       return true;
     }

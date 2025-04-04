@@ -30,6 +30,7 @@ import { FileValidationPipe } from 'src/pipes/file-validation/file-validation.pi
 import { ResponseDataFilterInterceptor } from './interceptors/response-data-filter/response-data-filter.interceptor';
 import { Roles } from 'src/decorators/roles/roles.decorator';
 import { UserRole } from 'src/common/enums/user-role.enum';
+import { GetId } from 'src/decorators/get-id.decorator';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -104,10 +105,11 @@ export class VehicleController {
   }
 
   @Delete(':id')
+  @Roles(UserRole.PUBLIC)
   @HttpCode(HttpStatus.NO_CONTENT) // Requisição bem-sucedida, mas sem conteúdo
-  delete(@Param('id') id: string) {
-    console.log(id);
+  delete(@GetId() id: string) {
+    console.log(`Remove um veículo ${id}`);
     // TODO: Remover um veículo
-    return { message: 'Remove um veículo' };
+    return { message: `Remove um veículo ${id}` };
   }
 }
