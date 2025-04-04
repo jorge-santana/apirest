@@ -1,6 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
+import { UserRole } from 'src/common/enums/user-role.enum';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
@@ -13,7 +14,7 @@ export class AuthGuard implements CanActivate {
     const roles = this.reflector.get<string[]>('roles', context.getHandler());
     console.log('Metadado do contexto de execução: ', roles);
     console.log('Passamos pelo Guard');
-    if (roles.includes('guest')) {
+    if (roles.includes(UserRole.PUBLIC)) {
       return true;
     }
 
