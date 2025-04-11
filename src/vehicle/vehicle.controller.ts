@@ -1,9 +1,7 @@
 import {
   Body,
   Controller,
-  Delete,
   Get,
-  HttpCode,
   HttpStatus,
   Param,
   ParseIntPipe,
@@ -13,7 +11,6 @@ import {
   Query,
   Res,
   UploadedFile,
-  UseGuards,
   UseInterceptors,
   UsePipes,
 } from '@nestjs/common';
@@ -31,6 +28,7 @@ import { ResponseDataFilterInterceptor } from './interceptors/response-data-filt
 import { Roles } from 'src/decorators/roles/roles.decorator';
 import { UserRole } from 'src/common/enums/user-role.enum';
 import { GetId } from 'src/decorators/get-id.decorator';
+import { DeleteDecorator } from './decorators/delete-decorator.decorator';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -104,9 +102,7 @@ export class VehicleController {
       .json({ message: 'Atualiza todos os dados de um veículo' });
   }
 
-  @Delete(':id')
-  @Roles(UserRole.PUBLIC)
-  @HttpCode(HttpStatus.NO_CONTENT) // Requisição bem-sucedida, mas sem conteúdo
+  @DeleteDecorator()
   delete(@GetId() id: string) {
     console.log(`Remove um veículo ${id}`);
     // TODO: Remover um veículo
