@@ -1,7 +1,9 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Param,
   ParseIntPipe,
@@ -9,7 +11,6 @@ import {
   Post,
   Put,
   Query,
-  Res,
   UploadedFile,
   UseInterceptors,
   UsePipes,
@@ -19,7 +20,6 @@ import { FindVehicleDto } from './dto/find-vehicle.dto';
 import { FindByIdVehicleDto } from './dto/find-by-id-vehicle.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { VehicleService } from './vehicle.service';
-import { Response } from 'express';
 import { UppercasePipe } from 'src/pipes/uppercase/uppercase.pipe';
 import { UpdateVehicleDto } from './dto/update-vehicle.dto';
 import { CurrencyPipe } from 'src/pipes/currency/currency.pipe';
@@ -95,7 +95,15 @@ export class VehicleController {
   @Put(':id')
   @Roles(UserRole.PUBLIC)
   replace(@Param('id', ParseIntPipe) id: number) {
-    throw new Error('Erro: A requisição foi mal formada');
+    //throw new Error('Erro: A requisição foi mal formada');
+    /*
+    throw new HttpException(
+      'A requisição foi mal formada',
+      HttpStatus.BAD_REQUEST,
+    );
+    */
+    throw new BadRequestException('A requisição foi mal formada');
+
     return this.vehicleService.replace(id);
   }
 
