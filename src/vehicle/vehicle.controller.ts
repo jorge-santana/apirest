@@ -93,13 +93,10 @@ export class VehicleController {
   }
 
   @Put(':id')
-  replace(@Param('id', ParseIntPipe) id: number, @Res() res: Response) {
-    console.log(id);
-    // TODO: Atualizar todos os dados de um veículo (substituir)
-    //return { message: 'Atualiza todos os dados de um veículo' };
-    return res
-      .status(HttpStatus.ACCEPTED) //Requisição aceita, porém o processamento será feito mais tarde, de forma assíncrona
-      .json({ message: 'Atualiza todos os dados de um veículo' });
+  @Roles(UserRole.PUBLIC)
+  replace(@Param('id', ParseIntPipe) id: number) {
+    throw new Error('Erro: A requisição foi mal formada');
+    return this.vehicleService.replace(id);
   }
 
   @DeleteDecorator()
