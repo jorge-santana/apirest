@@ -17,7 +17,7 @@ export class VehicleService {
     // 1 - Verificar se o item a ser substituído existe (se sim, avançar na lógica, se não, lançar uma exceção)
     throw new RecordNotFoundError(id);
     /*
-    throw new Error(
+     throw new Error(
       `Erro: Item de ID ${id} não foi localizado no banco de dados`,
     );
     */
