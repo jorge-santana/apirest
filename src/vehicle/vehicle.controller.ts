@@ -14,6 +14,7 @@ import {
   Put,
   Query,
   UploadedFile,
+  UseFilters,
   UseInterceptors,
   UsePipes,
 } from '@nestjs/common';
@@ -33,6 +34,7 @@ import { GetId } from 'src/decorators/get-id.decorator';
 import { DeleteDecorator } from './decorators/delete-decorator.decorator';
 import { TooManyRequestsHttpException } from 'src/errors/too-many-requests-http-exception';
 import { RecordNotFoundError } from 'src/errors/record-not-found-error';
+import { ErrorDetailFilter } from 'src/filters/error-detail/error-detail.filter';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -97,6 +99,7 @@ export class VehicleController {
   }
 
   @Put(':id')
+  @UseFilters(ErrorDetailFilter)
   @Roles(UserRole.PUBLIC)
   replace(@Param('id', ParseIntPipe) id: number) {
     //throw new Error('Erro: A requisição foi mal formada');
