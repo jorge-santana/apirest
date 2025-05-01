@@ -99,7 +99,7 @@ export class VehicleController {
   }
 
   @Put(':id')
-  @UseFilters(ErrorDetailFilter)
+  @UseFilters(new ErrorDetailFilter(true))
   @Roles(UserRole.PUBLIC)
   replace(@Param('id', ParseIntPipe) id: number) {
     //throw new Error('Erro: A requisição foi mal formada');
@@ -111,6 +111,7 @@ export class VehicleController {
     */
     //throw new BadRequestException('A requisição foi mal formada');
     //throw new TooManyRequestsHttpException();
+
     try {
       return this.vehicleService.replace(id);
     } catch (error: unknown) {
@@ -119,6 +120,8 @@ export class VehicleController {
       }
       throw new InternalServerErrorException();
     }
+
+    //return this.vehicleService.replace(id);
   }
 
   @DeleteDecorator()
