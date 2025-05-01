@@ -15,12 +15,10 @@ export class VehicleService {
   }
   replace(id: number) {
     // 1 - Verificar se o item a ser substituído existe (se sim, avançar na lógica, se não, lançar uma exceção)
-    throw new RecordNotFoundError(id);
-    /*
-     throw new Error(
+    // throw new RecordNotFoundError(id);
+    throw new Error(
       `Erro: Item de ID ${id} não foi localizado no banco de dados`,
     );
-    */
     // 2 - Inserir o novo item no banco de dados (se sim, avançar na lógica, se não, lançar uma exceção)
     // 3 - Inativar o item antigo no banco de dados (se sim, avançar na lógica, se não, lançar uma exceção)
     return { message: `SERVICE: Substituir veículo ID ${id}` };

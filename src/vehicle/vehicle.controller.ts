@@ -35,6 +35,7 @@ import { DeleteDecorator } from './decorators/delete-decorator.decorator';
 import { TooManyRequestsHttpException } from 'src/errors/too-many-requests-http-exception';
 import { RecordNotFoundError } from 'src/errors/record-not-found-error';
 import { ErrorDetailFilter } from 'src/filters/error-detail/error-detail.filter';
+import { ServiceErrorToHttpExceptionFilter } from 'src/filters/service-error-to-http-exception/service-error-to-http-exception.filter';
 
 @Controller('api/v1/vehicle')
 export class VehicleController {
@@ -99,7 +100,7 @@ export class VehicleController {
   }
 
   @Put(':id')
-  @UseFilters(new ErrorDetailFilter(true))
+  @UseFilters(ServiceErrorToHttpExceptionFilter, new ErrorDetailFilter(true))
   @Roles(UserRole.PUBLIC)
   replace(@Param('id', ParseIntPipe) id: number) {
     //throw new Error('Erro: A requisição foi mal formada');
@@ -112,16 +113,7 @@ export class VehicleController {
     //throw new BadRequestException('A requisição foi mal formada');
     //throw new TooManyRequestsHttpException();
 
-    try {
-      return this.vehicleService.replace(id);
-    } catch (error: unknown) {
-      if (error instanceof RecordNotFoundError) {
-        throw new NotFoundException(error.message);
-      }
-      throw new InternalServerErrorException();
-    }
-
-    //return this.vehicleService.replace(id);
+    return this.vehicleService.replace(id);
   }
 
   @DeleteDecorator()
