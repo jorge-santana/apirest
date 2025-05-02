@@ -14,7 +14,7 @@ async function bootstrap() {
 
   app.useGlobalInterceptors(
     new LoggingInterceptor(),
-    new MaxExecutionTimeInterceptor(10000),
+    new MaxExecutionTimeInterceptor(4000),
     new ResponseUnsafeHeadersRemoverInterceptor(),
   );
   app.useGlobalPipes(

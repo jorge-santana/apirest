@@ -81,6 +81,7 @@ export class VehicleController {
   }
 
   @Patch()
+  @Roles(UserRole.PUBLIC)
   @UsePipes(UppercasePipe)
   async update(
     @Query('id', ParseIntPipe) id: number,
