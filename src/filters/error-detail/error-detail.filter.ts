@@ -25,8 +25,8 @@ export class ErrorDetailFilter<T> implements ExceptionFilter {
         path: request.url,
         stack: this.showStack ? exception.stack : '', //nunca utilizar dessa forma
       });
+    } else {
+      throw new InternalServerErrorException();
     }
-
-    throw new InternalServerErrorException();
   }
 }

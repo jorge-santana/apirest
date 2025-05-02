@@ -1,12 +1,7 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
-  HttpException,
-  HttpStatus,
-  InternalServerErrorException,
-  NotFoundException,
   Param,
   ParseIntPipe,
   Patch,
@@ -32,12 +27,11 @@ import { Roles } from 'src/decorators/roles/roles.decorator';
 import { UserRole } from 'src/common/enums/user-role.enum';
 import { GetId } from 'src/decorators/get-id.decorator';
 import { DeleteDecorator } from './decorators/delete-decorator.decorator';
-import { TooManyRequestsHttpException } from 'src/errors/too-many-requests-http-exception';
-import { RecordNotFoundError } from 'src/errors/record-not-found-error';
-import { ErrorDetailFilter } from 'src/filters/error-detail/error-detail.filter';
 import { ServiceErrorToHttpExceptionFilter } from 'src/filters/service-error-to-http-exception/service-error-to-http-exception.filter';
+import { TooManyRequestsHttpException } from 'src/errors/too-many-requests-http-exception';
 
 @Controller('api/v1/vehicle')
+//@UseFilters(new ErrorDetailFilter(true))
 export class VehicleController {
   constructor(private vehicleService: VehicleService) {}
   @Get()
@@ -100,7 +94,7 @@ export class VehicleController {
   }
 
   @Put(':id')
-  @UseFilters(ServiceErrorToHttpExceptionFilter, new ErrorDetailFilter(true))
+  @UseFilters(ServiceErrorToHttpExceptionFilter)
   @Roles(UserRole.PUBLIC)
   replace(@Param('id', ParseIntPipe) id: number) {
     //throw new Error('Erro: A requisição foi mal formada');
@@ -118,6 +112,7 @@ export class VehicleController {
 
   @DeleteDecorator()
   delete(@GetId() id: string) {
+    throw new TooManyRequestsHttpException();
     console.log(`Remove um veículo ${id}`);
     // TODO: Remover um veículo
     return { message: `Remove um veículo ${id}` };
